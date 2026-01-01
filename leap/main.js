@@ -1628,9 +1628,11 @@ let words = {//単語:[part,week,意味]
     "whereas": [4, 10, "接:~だが一方"],
 }
 
-let wordDiv;
+let wordDiv, searchTxt;
 window.onload = function () {
     wordDiv = document.getElementById("words");
+    searchTxt = document.getElementById("searchTxt");
+    searchTxt.value = "";
     drawAll();
 }
 
@@ -1693,9 +1695,54 @@ function drawAll() {
 
         let thm = document.createElement("td");
         thm.textContent = words[word][2];
-        console.log(thm.style)
         tr.appendChild(thm);
 
         count++;
     }
+}
+
+function search() {
+    wordDiv.innerHTML = "";
+    let kw = searchTxt.value;
+    let fkeys = Object.keys(words).filter(key => key.includes(kw));
+    let kows = Object.keys(words);
+
+    let tele;
+    let table = document.createElement("table");
+    wordDiv.appendChild(table);
+    let thead = document.createElement("thead");
+    table.appendChild(thead);
+    let tr0 = document.createElement("tr");
+    thead.appendChild(tr0);
+    for (let e in tableEle) {
+        let th = document.createElement("th");
+        th.textContent = tableEle[e];
+        tr0.appendChild(th);
+    }
+
+    tele = table;
+    for (let key in fkeys) {
+        let tbody = document.createElement("tbody");
+        tele.appendChild(tbody);
+        let tr = document.createElement("tr");
+        tbody.appendChild(tr);
+
+        let thc = document.createElement("th");
+        thc.textContent = kows.indexOf(fkeys[key])+1;
+        tr.appendChild(thc);
+
+        let thw = document.createElement("th");
+        thw.textContent = fkeys[key];
+        tr.appendChild(thw);
+
+        let thm = document.createElement("td");
+        thm.textContent = words[fkeys[key]][2];
+        tr.appendChild(thm);
+    }
+}
+
+function reset() {
+    wordDiv.innerHTML = "";
+    searchTxt.value = "";
+    drawAll();
 }
