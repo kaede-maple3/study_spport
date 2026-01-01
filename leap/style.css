@@ -34,7 +34,7 @@ th{
 
 td {
   border: 1.5px solid rgb(160 160 160);
-  font-size: 0.5rem;
+  font-size: 0.55rem;
 }
 
 td:last-of-type {
@@ -48,4 +48,3 @@ tfoot th {
 tfoot td {
   font-weight: bold;
 }
-
