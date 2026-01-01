@@ -34,6 +34,7 @@ th{
 
 td {
   border: 1.5px solid rgb(160 160 160);
+  font-size: 0.55rem;
 }
 
 td:last-of-type {
